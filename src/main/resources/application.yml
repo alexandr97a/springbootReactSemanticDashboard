@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: qw78as45
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  devtools:
+    livereload:
+      enabled: true
+
+  mvc:
+    view:
+      prefix: /jsp/
+      suffix: .jsp
+---
+mybatis:
+  type-aliases-package: com.example.demo.model
+  mapper-locations: classpath:mapper/**/*.xml
+---  
+server:
+  port: 8080
+  #httpport: 80
+
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    session:
+      timeout: 3600s
+      cookie:
+        name: JSESSIONIDTABLE
+
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
