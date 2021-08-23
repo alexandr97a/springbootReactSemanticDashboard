@@ -17,18 +17,34 @@ class Add_table extends React.Component {
         }
       };
     
-      _addTable = (e) => {
-        const { table_title,table_text } = this.state;
+    _addTable = (e) => {
         e.preventDefault();
 
-        $.get('/table/insert'),
-        {
-            table_title : table_title,
-            table_text : table_text
-        },
-        function(){
-            alert("등록 되었습니다!");
-        }
+        // $.ajax({
+        // url: "/table/insert",
+        // dataType: "json",
+        // contentType: "application/json; charset=UTF-8",
+        // type: "post",
+        //     data: JSON.stringify({
+        //         table_title: this.state.table_title,
+        //     table_text: this.state.table_text}),
+        //     success: function (res) {
+        //     if(res.data) {
+        //         alert('등록되었습니다.');
+        //         return window.location.href="/";
+        //     }
+        // },
+        //     error: function (request, status, error) {
+        //     if(error.data) {
+        //         alert('오류.');
+        //     }
+        // }
+        // });
+        const _this = this;
+        $.post("/table/insert", function (data) {
+            table_title = _this.table_title,
+            table_text = _this.table
+        });
     }
       
       _titleUpdate(e) {
@@ -44,12 +60,12 @@ class Add_table extends React.Component {
                 <Navbar/>
                 <Grid id="mylayoutAdd_table">
                     <Grid.Column className="addtableClm">
-                    <Form onSubmit={this._addTable} >
-                    <Form.Field required>
-                        <label>제목</label>
-                        <Input placeholder='제목' onChange={(e) => this._titleUpdate(e)}/>
-                    </Form.Field>
-                    <CKEditor style={{ minWidth: "60vw"}}
+                    <Form onSubmit={this._addTable} method="POST">
+                        <Form.Field required>
+                            <label>제목</label>
+                            <Input placeholder='제목' onChange={(e) => this._titleUpdate(e)}/>
+                        </Form.Field>
+                        <CKEditor style={{ minWidth: "60vw"}}
                             editor={ ClassicEditor }
                             onReady={ editor => {
                                 // You can store the "editor" and use when it is needed.
@@ -69,7 +85,7 @@ class Add_table extends React.Component {
                         />
                         <Segment textAlign='center' className="addbtnSegment">
                             <Button fluid type="submit" size='huge' color='blue' id='requstionButton'>
-                            등록
+                                등록
                             </Button>
                         </Segment>
                     </Form>

@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: qw78as45
+    password: 1234qwer!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   devtools:
