@@ -24,10 +24,12 @@ class Main extends React.Component {
     
       _getData = () => {
         const _this = this;
-        $.get('/table/getall',function(res) {
-            _this.setState({ 
-                table : res.data
-            });
+          $.get('/table/getall', function (res) {
+              if (res && res.data) {
+                  _this.setState({
+                      table: res.data
+                  });
+              }
         });
       }
     //   _getData = async () => {

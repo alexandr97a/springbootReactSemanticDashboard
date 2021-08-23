@@ -20,32 +20,16 @@ class Add_table extends React.Component {
     _addTable = (e) => {
         e.preventDefault();
 
-        // $.ajax({
-        // url: "/table/insert",
-        // dataType: "json",
-        // contentType: "application/json; charset=UTF-8",
-        // type: "post",
-        //     data: JSON.stringify({
-        //         table_title: this.state.table_title,
-        //     table_text: this.state.table_text}),
-        //     success: function (res) {
-        //     if(res.data) {
-        //         alert('등록되었습니다.');
-        //         return window.location.href="/";
-        //     }
-        // },
-        //     error: function (request, status, error) {
-        //     if(error.data) {
-        //         alert('오류.');
-        //     }
-        // }
-        // });
-        const _this = this;
-        $.post("/table/insert", function (data) {
-            table_title = _this.table_title,
-            table_text = _this.table
-        });
-    }
+        $.post("/table/insert",
+            {
+                table_title: this.state.table_title,
+                table_text: this.state.table_text
+            },
+            function (data) {
+                    data.status
+                alert('data: ' + data.status);
+            });
+        }
       
       _titleUpdate(e) {
         this.setState({ table_title : e.target.value })
