@@ -35,8 +35,8 @@ public class TableController {
         Map<String, String> ret = new HashMap<String, String>();
         ret.put("status", "fail");
         String table_title = param.get("table_title");
-        Table table = new Table(table_title, "userid", "aaa");
-        int a = 3;
+        String table_text = param.get("table_text");
+        Table table = new Table(table_title, "글쓴이", table_text);
         try {
             tableMapper.insertOne(table);
 

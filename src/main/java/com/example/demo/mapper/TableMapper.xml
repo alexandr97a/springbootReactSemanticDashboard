@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.TableMapper">
     <insert id="insertOne" parameterType="Table">
-        INSERT INTO TABLES(TABLE_TITLE, TABLE_AUTOR, TABLE_TEXT) VALUES(#{table_title},#{table_autor},#{table_text})
+        INSERT INTO TABLES(TABLE_TITLE, TABLE_AUTOR, TABLE_TEXT, CREATEDAT, UPDATEDAT) VALUES(#{table_title},#{table_autor},#{table_text},now(), now())
     </insert>
     <select id="getAll" resultType="Table">
         SELECT * FROM TABLES
