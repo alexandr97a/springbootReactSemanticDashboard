@@ -28,6 +28,7 @@ class Add_table extends React.Component {
             function (data) {
                     data.status
                 alert('data: ' + data.status);
+                return window.location.href="main.html";
             });
         }
       

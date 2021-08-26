@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import com.example.demo.mapper.TableMapper;
 import com.example.demo.model.Table;
-import com.example.demo.model.TableDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +46,7 @@ public class TableController {
     }
 
     @GetMapping("/getall")
-    public Map<String, List<?>> getAll(@RequestParam final Map<String, String> param,
+    public Map<String, List<Table>> getAll(@RequestParam final Map<String, String> param,
             final HttpServletRequest request) {
         // final HttpSession session = request.getSession();
         // String userid = session.getAttribute("userid");
@@ -56,7 +54,7 @@ public class TableController {
         // final HttpSession session = request.getSession();
         // session.setAttribute("userid",userid);
 
-        Map<String, List<?>> ret = new HashMap<String, List<?>>();
+        Map<String, List<Table>> ret = new HashMap<String, List<Table>>();
         try {
             List<Table> list = tableMapper.getAll();
             ret.put("data", list);

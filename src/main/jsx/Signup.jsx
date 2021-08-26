@@ -2,6 +2,8 @@ import 'semantic-ui-css/semantic.min.css'
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Form, Grid, Header, Message, } from 'semantic-ui-react'
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
 class Signup extends React.Component {
     constructor(props) {
@@ -31,28 +33,23 @@ class Signup extends React.Component {
       this.setState({ user_birthday : e.target.value })
     }
   
-    // _addUser = async(e) => {
-    //   const { user_name, user_email, user_password, user_phone, user_birthday } = this.state;
-    //   e.preventDefault();
+    _addUser = (e) => {
+      e.preventDefault();
   
-    //   const res = await axios('/add/user', {
-    //     method : 'POST',
-    //     data : { 
-    //       'user_name' : user_name,
-    //       'user_email' : user_email,
-    //       'user_password': user_password,
-    //       'user_phone' : user_phone,
-    //       'user_birthday' : user_birthday
-    //    },
-    //     headers: new Headers()
-    //   });
-    //   console.log('user_password',user_password)
-  
-    //   if(res.data) {
-    //     alert('회원가입 되었습니다.');
-    //     return window.location.href="/login";
-    //   }
-    // }
+      $.post("/user/insert",
+      {
+        user_name: this.state.user_name,
+        user_email: this.state.user_email,
+        user_password: this.state.user_password,
+        user_phone: this.state.user_phone,
+        user_birthday: this.state.user_birthday
+      },
+      function (data) {
+              data.status
+          alert('회원가입 되었습니다. data: ' + data.status);
+          return window.location.href="login.html";
+      });
+    }
     
     render() {
         return(
@@ -64,7 +61,7 @@ class Signup extends React.Component {
                         </Header>
                             <Form size='large'  onSubmit={this._addUser}>
                             <Form.Input fluid icon='user' iconPosition='left' placeholder='이름' onChange={(e) => this._nameAdd(e)}/>
-                            <Form.Input fluid icon='mail' iconPosition='left' placeholder='이메일'  onChange={(e) => this._emailAdd(e)}/>
+                            <Form.Input fluid icon='mail' iconPosition='left' placeholder='이메일' type="email"  onChange={(e) => this._emailAdd(e)}/>
                             <Form.Input
                             fluid
                             icon='lock'
