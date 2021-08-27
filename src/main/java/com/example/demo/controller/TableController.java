@@ -37,7 +37,6 @@ public class TableController {
         Table table = new Table(table_title, "글쓴이", table_text);
         try {
             tableMapper.insertOne(table);
-
             ret.put("status", "success");
         } catch (Exception e) {
             e.printStackTrace();
