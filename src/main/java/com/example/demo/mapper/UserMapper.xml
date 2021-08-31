@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
     <insert id="insertUser" parameterType="User">
-        INSERT INTO USERS(USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_BIRTHDAY, CREATEDAT, UPDATEDAT) VALUES(#{user_name},#{user_email},SHA2(#{user_password},256),#{user_phone}, #{user_birthday}, now(), now())
+        INSERT INTO USERS(USER_NAME, USER_EMAIL, USER_PASSWORD, USER_PHONE, USER_BIRTHDAY, CREATEDAT, UPDATEDAT) VALUES(#{user_name},#{user_email},#{user_password},#{user_phone}, #{user_birthday}, sysdate, sysdate)
     </insert>
 
 

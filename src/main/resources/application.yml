@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
+    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
+    username: SYSTEM
     password: 1234qwer!@#
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: oracle.jdbc.driver.OracleDriver
 
   devtools:
     livereload:
