@@ -10,7 +10,9 @@ import com.example.demo.mapper.TableMapper;
 import com.example.demo.model.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +62,12 @@ public class TableController {
         } catch (Exception e) {
         }
         return ret;
+    }
+
+    @DeleteMapping("/deleteTable")
+    public Long deleteOne(@PathVariable Long table_id) {
+        tableMapper.deleteOne(table_id);
+        return table_id;
     }
 
 }

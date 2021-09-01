@@ -32,12 +32,7 @@ class Main extends React.Component {
               }
         });
       }
-    //   _getData = async () => {
-    //     const res = await axios.get('/table/getall');
-    //     this.setState({ 
-    //       table : res.data
-    //     })
-    //   }
+
     
     //   _delete = async (el) => {
     //     const remove = window.confirm(el.table_title + '을 삭제하시겠습니까?');

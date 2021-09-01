@@ -8,8 +8,8 @@
         SELECT * FROM TABLES ORDER BY table_id ASC
     </select>
 
-    <delete id="delete" >
-        delete from member where id = #{table_id} 
+    <delete id="deleteOne" resultType="Table">
+        delete from member where TABLE_ID = #{table_id} 
     </delete>
         <!--
     // @Insert("INSERT INTO tables(table_title, table_autor, table_text) VALUES(#{table.title},#{table.autor},#{table.text})")

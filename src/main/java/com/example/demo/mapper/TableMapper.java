@@ -10,6 +10,8 @@ public interface TableMapper {
 
     public List<Table> getAll();
 
+    public void deleteOne(Long table_id);
+
     // @Insert("INSERT INTO tables(table_title, table_autor, table_text)
     // VALUES(#{table.title},#{table.autor},#{table.text})")
     // int insert(@Param("tables")Table table);

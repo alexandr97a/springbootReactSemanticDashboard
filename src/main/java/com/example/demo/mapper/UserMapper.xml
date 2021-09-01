@@ -6,14 +6,15 @@
     </insert>
 
 
-    <!-- <select id="getAll" resultType="Table">
-        SELECT * FROM TABLES
+    <select id="getUser" resultType="User">
+        SELECT * FROM USERs WHERE USER_ID=#(user_id) AND USER_PASSWORD = #{user_password}
     </select>
 
+<!-- 
     <delete id="delete" >
         delete from member where id = #{table_id} 
-    </delete> -->
-        <!--
+    </delete>
+
     // @Insert("INSERT INTO tables(table_title, table_autor, table_text) VALUES(#{table.title},#{table.autor},#{table.text})")
     // int insert(@Param("tables")Table table);
 
