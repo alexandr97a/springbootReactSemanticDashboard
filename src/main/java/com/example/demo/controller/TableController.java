@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.example.demo.dto.LoginDTO;
 import com.example.demo.mapper.TableMapper;
 import com.example.demo.model.Table;
 
@@ -64,10 +66,15 @@ public class TableController {
         return ret;
     }
 
-    @DeleteMapping("/deleteTable")
+    @DeleteMapping("/deleteTable/{id}")
     public Long deleteOne(@PathVariable Long table_id) {
         tableMapper.deleteOne(table_id);
         return table_id;
+    }
+
+    @PostMapping("/login")
+    public void loginPost(LoginDTO loginDTO, HttpSession session) throws Exception {
+
     }
 
 }
