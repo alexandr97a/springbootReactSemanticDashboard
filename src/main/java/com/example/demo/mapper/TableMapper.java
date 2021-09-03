@@ -2,21 +2,21 @@ package com.example.demo.mapper;
 
 import java.util.List;
 
-import com.example.demo.model.Table;
+import com.example.demo.dto.TableDTO;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface TableMapper {
 
-    public void insertOne(Table table);
+    public int insertTable(TableDTO params);
 
-    public List<Table> getAll();
+    public List<TableDTO> selectTable();
 
-    public void deleteOne(Long table_id);
+    public int updateTable(TableDTO params);
 
-    // @Insert("INSERT INTO tables(table_title, table_autor, table_text)
-    // VALUES(#{table.title},#{table.autor},#{table.text})")
-    // int insert(@Param("tables")Table table);
+    public int deleteTable(Long table_id);
 
-    // @Select("SELECT * FROM tables")
-    // List<Table> getAll();
+    public TableDTO selectDetail(Long table_id);
 
 }

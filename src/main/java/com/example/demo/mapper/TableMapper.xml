@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.TableMapper">
-    <insert id="insertOne" parameterType="Table">
+
+    <insert id="insertTable" parameterType="TableDTO">
         INSERT INTO TABLES(TABLE_TITLE, TABLE_AUTOR, TABLE_TEXT, CREATEDAT, UPDATEDAT) VALUES(#{table_title},#{table_autor},#{table_text},SYSDATE, SYSDATE)
     </insert>
-    <select id="getAll" resultType="Table">
+    
+    <select id="selectTable" resultType="TableDTO" parameterType="TableDTO">
         SELECT * FROM TABLES ORDER BY table_id ASC
     </select>
 
-    <delete id="deleteOne" resultType="Table">
-        delete from member where TABLE_ID = #{table_id} 
-    </delete>
-        <!--
-    // @Insert("INSERT INTO tables(table_title, table_autor, table_text) VALUES(#{table.title},#{table.autor},#{table.text})")
-    // int insert(@Param("tables")Table table);
+    <update id="updateTable" parameterType="TableDTO">
+        UPDATE TABLES SET 
+            TABLE_TITLE = #{table_title},
+            TABLE_TEXT = #{table_text},
+            UPDATEDAT = SYSDATE
+        WHERE
+            TABLE_ID = #{table_id} 
+    </update>
 
-    // @Select("SELECT * FROM TABLES")
-    // List<Table> getAll();
-    -->
+    <delete id="deleteTable" parameterType="long">
+        DELETE FROM TABLES WHERE TABLE_ID = #{table_id} 
+    </delete>
+
+    <select id="selectDetail" parameterType="long" resultType="TableDTO">
+    SELECT * FROM
+        TABLES
+    WHERE
+        TABLE_ID = #{table_id} 
+	</select>
+
+
 </mapper>

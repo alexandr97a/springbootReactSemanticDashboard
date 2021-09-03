@@ -3,10 +3,10 @@ const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || "20
 module.exports = {
     context: path.resolve(__dirname, 'src/main/jsx'),
     entry: {
-        main: './Main.jsx',
-        add_table: './Add_table.jsx',
+        table_list: './TableList.jsx',
+        add_table: './AddTable.jsx',
         table: './Table.jsx',
-        edit_table: './Edit_table.jsx',
+        edit_table: './EditTable.jsx',
         login: './Login.jsx',
         signup: './Signup.jsx',
     },

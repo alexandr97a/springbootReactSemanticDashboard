@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.example.demo.dto.LoginDTO;
+import com.example.demo.dto.TableDTO;
 import com.example.demo.mapper.TableMapper;
-import com.example.demo.model.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,9 +38,9 @@ public class TableController {
         ret.put("status", "fail");
         String table_title = param.get("table_title");
         String table_text = param.get("table_text");
-        Table table = new Table(table_title, "글쓴이", table_text);
+        TableDTO table = new TableDTO(table_title, "글쓴이", table_text);
         try {
-            tableMapper.insertOne(table);
+            tableMapper.insertTable(table);
             ret.put("status", "success");
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,32 +49,38 @@ public class TableController {
     }
 
     @GetMapping("/getall")
-    public Map<String, List<Table>> getAll(@RequestParam final Map<String, String> param,
+    public Map<String, List<TableDTO>> selectTable(@RequestParam final Map<String, List<TableDTO>> param,
             final HttpServletRequest request) {
+        Map<String, List<TableDTO>> ret = new HashMap<String, List<TableDTO>>();
+        try {
+            List<TableDTO> list = tableMapper.selectTable();
+            ret.put("data", list);
+        } catch (Exception e) {
+        }
+        return ret;
         // final HttpSession session = request.getSession();
         // String userid = session.getAttribute("userid");
 
         // final HttpSession session = request.getSession();
         // session.setAttribute("userid",userid);
-
-        Map<String, List<Table>> ret = new HashMap<String, List<Table>>();
-        try {
-            List<Table> list = tableMapper.getAll();
-            ret.put("data", list);
-        } catch (Exception e) {
-        }
-        return ret;
     }
 
-    @DeleteMapping("/deleteTable/{id}")
-    public Long deleteOne(@PathVariable Long table_id) {
-        tableMapper.deleteOne(table_id);
+    @PostMapping("/deleteTable/{table_id}")
+    public Long deleteTable(@PathVariable("table_id") Long table_id) {
+        tableMapper.deleteTable(table_id);
         return table_id;
     }
 
-    @PostMapping("/login")
-    public void loginPost(LoginDTO loginDTO, HttpSession session) throws Exception {
-
+    @GetMapping("/view/{table_id}")
+    public Long selectDetail(@PathVariable("table_id") Long table_id, Model model) {
+        model.addAttribute("table_id", tableMapper.selectDetail(table_id));
+        return table_id;
     }
+
+    // @PostMapping("/login")
+    // public void loginPost(LoginDTO loginDTO, HttpSession session) throws
+    // Exception {
+
+    // }
 
 }
