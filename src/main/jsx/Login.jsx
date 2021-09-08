@@ -25,7 +25,7 @@ class Login extends React.Component {
                       <Header as='h2' color='blue' textAlign='center'>
                       Log-in to your account
                       </Header>
-                      <Form size='large' method="post" action="/login">
+                      <Form size='large' id="loginform" method="post" action="">
                         <Form.Input type="email" fluid icon='user' iconPosition='left' name="username" placeholder='E-mail address' />
                         <Form.Input
                         fluid

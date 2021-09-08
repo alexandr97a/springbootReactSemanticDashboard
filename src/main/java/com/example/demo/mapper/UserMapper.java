@@ -1,10 +1,13 @@
 package com.example.demo.mapper;
 
-import com.example.demo.model.User;
+import java.util.Map;
+
+import com.example.demo.dto.LoginDTO;
+import com.example.demo.dto.UserDTO;
 
 public interface UserMapper {
 
-    public void insertUser(User user);
+    public int insertUser(UserDTO userDTO);
 
-    User getUser(Long id);
+    public LoginDTO getUser(Map<String, String> map);
 }

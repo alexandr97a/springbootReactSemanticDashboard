@@ -16,7 +16,8 @@ class Table extends React.Component {
         coment_text: "",
         coment_edit_text: "",
         // id:props.match.params.id,
-        clickedComment: -1
+        clickedComment: -1,
+        section: 'detail'
       }
     };
   

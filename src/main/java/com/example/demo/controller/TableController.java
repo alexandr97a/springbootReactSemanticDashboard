@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import com.example.demo.dto.LoginDTO;
 import com.example.demo.dto.TableDTO;
 import com.example.demo.mapper.TableMapper;
 

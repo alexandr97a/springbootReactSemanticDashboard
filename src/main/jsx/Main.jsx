@@ -14,8 +14,8 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
             this.state = {
-                section: 'list',
-                id:props.match.params.id
+                section: '',
+                // id:props.match.params.id
             }
     };
 
@@ -25,9 +25,16 @@ class Main extends React.Component {
 
     onChangeSection() {
         this.props.history.push(url, this.state);
-        this.setState({ 
-            section : res.data
+        if (this.state.section == 'list') {
+            this.setState({ 
+                section : 'view'
+            })
+        }
+        else {
+            this.setState({ 
+                section : 'list'
         })
+        }
     }
 
     onChangeDetailID() {

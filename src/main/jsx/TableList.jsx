@@ -15,7 +15,8 @@ class TableList extends React.Component {
         this.state = { 
             table: [],
             pageSize: 10,
-            section: 'list'
+            section: 'list',
+            id:''
         }
       };
     
@@ -52,13 +53,13 @@ class TableList extends React.Component {
  
     render() {
         const { table } = this.state
-        console.log('table1',table)
+        console.log('id',this.state.id)
         return <Fragment>
             <Navbar/>
             <Grid id="mylayoutMain">
                 <Grid.Row columns={1}>
                     <Grid.Column id="addBtn">
-                        <Button animated='fade' href="add_table">
+                        <Button animated='fade' href="add_table.html">
                             <Button.Content visible>글쓰기</Button.Content>
                             <Button.Content hidden>
                                 <Icon name='add' />
