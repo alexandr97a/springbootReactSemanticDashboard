@@ -6,8 +6,8 @@
     </insert>
 
 
-    <select id="getUser" resultType="LoginDTO">
-        SELECT * FROM USERs WHERE USER_ID=#(user_id) AND USER_PASSWORD = #{user_password}
+    <select id="getUser" parameterType="LoginDTO" resultType="UserDTO">
+        SELECT * FROM USERS WHERE USER_EMAIL=#{user_email} AND USER_PASSWORD=#{user_password}
     </select>
 
 <!-- 

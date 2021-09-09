@@ -81,5 +81,4 @@ class AddTable extends React.Component {
     }
  
 }
- 
-ReactDOM.render(<AddTable/>, document.getElementById('root'));
+export default AddTable;

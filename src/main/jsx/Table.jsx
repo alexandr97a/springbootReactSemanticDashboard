@@ -273,5 +273,4 @@ class Table extends React.Component {
         )
     };
   };
-
-  ReactDOM.render(<Table/>, document.getElementById('root'));
+export default Table;

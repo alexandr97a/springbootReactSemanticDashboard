@@ -100,4 +100,4 @@ class Signup extends React.Component {
     };
   };
 
-  ReactDOM.render(<Signup/>, document.getElementById('root'));
+export default Signup;

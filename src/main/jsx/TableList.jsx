@@ -124,4 +124,4 @@ class TableList extends React.Component {
       </Fragment>
     }
 }
-ReactDOM.render(<TableList/>, document.getElementById('root'));
+export default TableList;

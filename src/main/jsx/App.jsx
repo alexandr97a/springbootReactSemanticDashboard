@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './Main.jsx';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import MainPage from './MainPage.jsx';
+import {BrowserRouter, Route} from "react-router-dom"
 
 class App extends React.Component {
     render() {
         return(
-            <Router>
-                <Route component={Main} />
-            </Router>
+            <BrowserRouter>
+                <Route component={MainPage} />
+            </BrowserRouter>
         )
     }
 }
-export default App;
+ReactDOM.render(<App />, document.getElementById('root'));

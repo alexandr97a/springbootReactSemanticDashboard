@@ -2,21 +2,44 @@ import 'semantic-ui-css/semantic.min.css'
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Form, Grid, Header, Message, } from 'semantic-ui-react'
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
 class Login extends React.Component {
-    state = {
-        value: ""
-    };
-    password(e) {
-      let value = e.target.value;
-      value = value.replace(/^[^A-Za-z0-9]*$/gi, "");
-      this.setState({
-        value
-      })
-      console.log(this.state.value)
+    constructor(props) {
+      super(props);
+        this.state = {
+          user_email: "",
+          user_password:"",
+        }
+      };
+
+    _email(e) {
+      this.setState({ user_email : e.currentTarget.value })
+    }
+    _password(e) {
+      this.setState({ user_password : e.currentTarget.value })
     }
   
+    _login = (e) => {
+      e.preventDefault();
+
+      const _this = this;
     
+      $.post("/user/login",
+        {
+          user_email: this.state.user_email,
+          user_password: this.state.user_password,
+        },
+        function (data) {
+          if (data.status == "fail") {
+            alert(data.msg);
+            return;
+          }
+          alert('로그인 성공. data: ' + data.msg);
+          _this.props.onChangeSection("table_list");
+        });
+    }
     render() {
         return(
           <Fragment>
@@ -25,8 +48,8 @@ class Login extends React.Component {
                       <Header as='h2' color='blue' textAlign='center'>
                       Log-in to your account
                       </Header>
-                      <Form size='large' id="loginform" method="post" action="">
-                        <Form.Input type="email" fluid icon='user' iconPosition='left' name="username" placeholder='E-mail address' />
+                      <Form size='large' id="login" onSubmit={this._login}>
+                        <Form.Input type="email" fluid icon='user' iconPosition='left' name="username" placeholder='E-mail address' onChange={(e) => this._email(e)} />
                         <Form.Input
                         fluid
                         icon='lock'
@@ -34,15 +57,14 @@ class Login extends React.Component {
                         name="password"
                         placeholder='Password'
                         type='password'
-                        value={this.state.value}
-                        onChange={(e) => this.password(e)}
+                        onChange={(e) => this._password(e)}
                         />
                       <Button color='blue' fluid size='large' type="submit">
                         Login
                       </Button>
                       </Form>
                       <Message>
-                      New to us? <a href='/signup.html'>Sign Up</a>
+                        New to us? <a href='/signup.html'>Sign Up</a>
                       </Message>
                   </Grid.Column>
               </Grid>
@@ -50,5 +72,4 @@ class Login extends React.Component {
         )
     };
   };
-  
-  ReactDOM.render(<Login/>, document.getElementById('root'));
+export default Login;

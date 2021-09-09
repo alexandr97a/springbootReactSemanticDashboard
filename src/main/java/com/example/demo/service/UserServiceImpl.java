@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
-import java.util.Map;
-
 import com.example.demo.dto.LoginDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.mapper.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public LoginDTO login(Map<String, String> map) throws Exception {
-        return userMapper.getUser(map);
+    public UserDTO login(LoginDTO loginDtO) throws Exception {
+        return userMapper.getUser(loginDtO);
     }
 }

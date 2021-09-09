@@ -136,4 +136,4 @@ class EditTable extends React.Component {
         )
     };
   };
-ReactDOM.render(<EditTable/>, document.getElementById('root'));
+export default EditTable;

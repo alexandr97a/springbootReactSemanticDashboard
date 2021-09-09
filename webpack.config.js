@@ -2,13 +2,8 @@ var path = require('path');
 const imageInlineSizeLimit = parseInt(process.env.IMAGE_INLINE_SIZE_LIMIT || "2000");
 module.exports = {
     context: path.resolve(__dirname, 'src/main/jsx'),
-    entry: {
-        table_list: './TableList.jsx',
-        add_table: './AddTable.jsx',
-        table: './Table.jsx',
-        edit_table: './EditTable.jsx',
-        login: './Login.jsx',
-        signup: './Signup.jsx',
+  entry: {
+        main: './App.jsx'
     },
     devtool: 'sourcemaps',
     cache: true,
@@ -16,7 +11,9 @@ module.exports = {
         path: __dirname,
         filename: './src/main/webapp/js/react/[name].bundle.js'
     },
-    mode: 'none',
+    // mode: 'none',
+    mode: "development",
+    devtool: "sourcemaps",
     module: {
         rules: [ {
             test: /\.jsx?$/,
