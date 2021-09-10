@@ -24,13 +24,20 @@ class TableList extends React.Component {
         this._getData();
       }
     
+  
+  
       _getData = () => {
         const _this = this;
-          $.get('/table/getall', function (res) {
+        const { tableid, page } = this.state;
+        $.get('/table/getlist', {tableid, page}, function (res) {
               if (res && res.data) {
                   _this.setState({
                       table: res.data
                   });
+                // if (res.data.public == false) {
+                //   this.props.onChangeSection("login");
+                //   return;
+                //  }
               }
         });
       }

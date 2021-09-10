@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.LoginDTO;
+import java.util.List;
+
 import com.example.demo.dto.UserDTO;
 import com.example.demo.mapper.UserMapper;
 
@@ -12,7 +13,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public UserDTO login(LoginDTO loginDtO) throws Exception {
-        return userMapper.getUser(loginDtO);
+    public List<UserDTO> login(UserDTO userDtO) throws Exception {
+        return userMapper.getUser(userDtO);
     }
 }

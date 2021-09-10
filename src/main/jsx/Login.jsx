@@ -14,14 +14,14 @@ class Login extends React.Component {
         }
       };
 
-    _email(e) {
+    _email = (e) => {
       this.setState({ user_email : e.currentTarget.value })
     }
-    _password(e) {
+    _password = (e) => {
       this.setState({ user_password : e.currentTarget.value })
     }
   
-    _login = (e) => {
+    _login =(e)=>  {
       e.preventDefault();
 
       const _this = this;
@@ -49,15 +49,15 @@ class Login extends React.Component {
                       Log-in to your account
                       </Header>
                       <Form size='large' id="login" onSubmit={this._login}>
-                        <Form.Input type="email" fluid icon='user' iconPosition='left' name="username" placeholder='E-mail address' onChange={(e) => this._email(e)} />
+                        <Form.Input type="email" fluid icon='user' iconPosition='left' name="username" placeholder='E-mail address' onChange={this._email} />
                         <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        name="password"
-                        placeholder='Password'
-                        type='password'
-                        onChange={(e) => this._password(e)}
+                    fluid
+                    icon='lock'
+                    iconPosition='left'
+                    name="password"
+                    placeholder='Password'
+                    type='password'
+                    onChange={this._password}
                         />
                       <Button color='blue' fluid size='large' type="submit">
                         Login

@@ -21,7 +21,7 @@ class MainPage extends React.Component {
     };
 
     componentDidMount() {
-        this.onChangeSection("table_list");
+        this.onChangeSection("login");
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -30,11 +30,11 @@ class MainPage extends React.Component {
         }
     }
 
-    onChangeSection(section) {
+    onChangeSection = (section) => {
         this.setState({ section: section });
     }
 
-    onChangeDetailID(res) {
+    onChangeDetailID = (res) => {
         this.setState({ 
             section : res.data
         })
@@ -56,7 +56,7 @@ class MainPage extends React.Component {
                     <Route path="/table_list" render={() => <TableList onChangeSection={this.onChangeSection} onChangeDetailID={this.onChangeDetailID}/>} />
                     <Route path="/add_table" render={() => <AddTable/>} />
                     <Route path="/edit_table/:id" render={() => <EditTable/>} />
-                    <Route path="/view/:id" render={() => <Table  onChangeSection={this.onChangeSection}  />} />
+                    <Route path="/view/:id" render={() => <Table  onChangeSection={this.onChangeSection} detailID={this.state.detailID} />} />
                     <Route path="/login" render={() => <Login onChangeSection={this.onChangeSection} />} />
                     <Route path="/signup" render={() => <Signup/>} />
                 </Switch>

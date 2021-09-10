@@ -1,13 +1,12 @@
 package com.example.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.example.demo.dto.LoginDTO;
 import com.example.demo.dto.UserDTO;
-import com.example.demo.dto.UserParam;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
 
@@ -36,16 +35,13 @@ public class UserController {
         Map<String, String> ret = new HashMap<String, String>();
 
         ret.put("status", "fail");
-        // String user_name = param.get("user_name");
-        // String user_email = param.get("user_email");
-        // String user_password = param.get("user_password");
-        // String user_phone = param.get("user_phone");
-        // String user_birthday = param.get("user_birthday");
-        UserParam userParam = new UserParam();
-        // user_name, user_email, user_password, user_phone, user_birthday);
-        userParam.set(param);
+        UserDTO userDTO = new UserDTO();
+        boolean valid = userDTO.setSignUp(param);
+        if (!valid)
+            return ret;
+
         try {
-            userMapper.insertUser(userParam);
+            userMapper.insertUser(userDTO);
             ret.put("status", "success");
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,20 +54,21 @@ public class UserController {
         Map<String, String> ret = new HashMap<String, String>();
         ret.put("status", "fail");
         try {
-            LoginDTO loginDTO = new LoginDTO(map);
+            UserDTO userDTO = new UserDTO();
+            boolean valid = userDTO.setLogin(map);
 
-            if (!loginDTO.isValid()) {
+            if (!valid) {
                 ret.put("msg", "아이디 또는 비밀번호를 입력해주세요");
                 return ret;
             }
 
-            UserDTO userDTO = userService.login(loginDTO);
-
-            if (userDTO == null) {
+            List<UserDTO> listUserDTO = userService.login(userDTO);
+            if (listUserDTO.size() == 0) {
                 ret.put("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
                 return ret;
             }
 
+            userDTO = listUserDTO.get(0);
             httpSession.setAttribute("user", userDTO);
             ret.put("status", "success");
         } catch (Exception e) {

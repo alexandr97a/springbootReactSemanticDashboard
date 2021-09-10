@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.LoginDTO;
+import java.util.List;
+
 import com.example.demo.dto.UserDTO;
 
 public interface UserService {
-    public UserDTO login(LoginDTO loginDTO) throws Exception;
+    public List<UserDTO> login(UserDTO userDTO) throws Exception;
 }
