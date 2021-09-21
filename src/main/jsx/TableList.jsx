@@ -28,8 +28,8 @@ class TableList extends React.Component {
   
       _getData = () => {
         const _this = this;
-        const { tableid, page } = this.state;
-        $.get('/table/getlist', {tableid, page}, function (res) {
+        // const { tableid, page } = this.state;
+        $.get('/table/getlist', function (res) {
               if (res && res.data) {
                   _this.setState({
                       table: res.data
@@ -89,21 +89,12 @@ class TableList extends React.Component {
                         <Table.Body>
                         {table.length !== 0 ? 
                             table.map( (el, key) => {
-                            const view_url = `/table/${el.table_id}`;
-                            const link = () =>{
-                                return window.location.href=view_url;
-                            }
-                            // const edit_view_url = 'edit_table/'+el.id;
-                            // const editlink = () =>{
-                            //   return window.location.href=edit_view_url;
-                            // }
-                            console.log('el',el)
                             return(
                                 <Table.Row key={key} className="tableRow">
-                                    <Table.Cell className="tableNumber" onClick={link}>{el.table_id}</Table.Cell>
-                                    <Table.Cell onClick={link}>{el.table_title}</Table.Cell>
-                                    <Table.Cell onClick={link}>{el.table_autor}</Table.Cell>
-                                    <Table.Cell onClick={link}><Moment format="YYYY-MM-DD" date={el.createdAt}/></Table.Cell>
+                                    <Table.Cell className="tableNumber">{el.table_id}</Table.Cell>
+                                    <Table.Cell>{el.table_title}</Table.Cell>
+                                    <Table.Cell>{el.table_autor}</Table.Cell>
+                                    <Table.Cell><Moment format="YYYY-MM-DD" date={el.createdAt}/></Table.Cell>
                                     <Table.Cell>
                                         <Button animated='fade' onClick={() => this._delete(el)}>
                                         <Button.Content visible>Delete</Button.Content>

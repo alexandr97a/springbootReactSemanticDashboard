@@ -9,6 +9,7 @@ import EditTable from "./EditTable.jsx"
 import Table from "./Table.jsx"
 import Login from "./Login.jsx"
 import Signup from "./Signup.jsx"
+import Navbar from './component/Navbar.jsx';
 import { isDuration } from 'moment';
  
 class MainPage extends React.Component {
@@ -21,7 +22,7 @@ class MainPage extends React.Component {
     };
 
     componentDidMount() {
-        this.onChangeSection("login");
+        this.onChangeSection("table_list");
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -53,12 +54,13 @@ class MainPage extends React.Component {
         return(
             <Fragment>
                 <Switch>
+                    {/* <Route Navbar onChangeSection={this.onChangeSection} /> */}
                     <Route path="/table_list" render={() => <TableList onChangeSection={this.onChangeSection} onChangeDetailID={this.onChangeDetailID}/>} />
                     <Route path="/add_table" render={() => <AddTable/>} />
-                    <Route path="/edit_table/:id" render={() => <EditTable/>} />
-                    <Route path="/view/:id" render={() => <Table  onChangeSection={this.onChangeSection} detailID={this.state.detailID} />} />
+                    <Route path="/edit_table/:id" render={() => <EditTable onChangeSection={this.onChangeSection} detailID={this.state.detailID}/>} />
+                    <Route path="/view/:id" render={() => <Table onChangeSection={this.onChangeSection} detailID={this.state.detailID} />} />
                     <Route path="/login" render={() => <Login onChangeSection={this.onChangeSection} />} />
-                    <Route path="/signup" render={() => <Signup/>} />
+                    <Route path="/signup" render={() => <Signup onChangeSection={this.onChangeSection} />} />
                 </Switch>
             </Fragment>
         )

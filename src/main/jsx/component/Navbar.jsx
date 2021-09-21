@@ -11,7 +11,13 @@ class Navbar extends React.Component {
         list: []
       }
     };
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+    if (name == 'home')
+      this.props.onChangeSection("table_list")
+    else
+      this.props.onChangeSection("login")
+    }
   
     // componentDidMount() {
     //   this._getData();
@@ -26,7 +32,6 @@ class Navbar extends React.Component {
     //     }
     //     this.setState({ list: res.data});
     // }
-    
     render() {
       const user = this.state.list[0];
       console.log('state', this.state)
@@ -37,18 +42,16 @@ class Navbar extends React.Component {
               <Segment inverted color="blue" >
                   <Menu size='huge' color="blue"  inverted >
                       <Menu.Item
-                      name='gamepad'
-                      href="main.html"
+                      name='home'
                       onClick={this.handleItemClick}
                       >
                       <Icon name='dashcube' />
                           Dashboard
                       </Menu.Item>
-                      <Menu.Menu position='right'>
-                        <Menu.Item
-                        name='로그인'
-                        href="login.html"
-                        onClick={this.handleItemClick}/>
+                  <Menu.Menu position='right'>
+                      <Menu.Item
+                          name='로그인'
+                          onClick={this.handleItemClick}/>
                       </Menu.Menu>
                   </Menu>
               </Segment>

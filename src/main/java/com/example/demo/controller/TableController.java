@@ -45,7 +45,8 @@ public class TableController {
         return ret;
     }
 
-    @GetMapping("/getlist/{tableid}/{page}/{sort}/{order}")
+    // @GetMapping("/getlist/{tableid}/{page}/{sort}/{order}")
+    @GetMapping("/getlist")
     public Map<String, List<TableDTO>> selectTable(@RequestParam final Map<String, List<TableDTO>> param,
             final HttpServletRequest request) {
         Map<String, List<TableDTO>> ret = new HashMap<String, List<TableDTO>>();

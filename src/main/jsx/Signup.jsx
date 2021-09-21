@@ -47,8 +47,13 @@ class Signup extends React.Component {
       function (data) {
               data.status
           alert('회원가입 되었습니다. data: ' + data.status);
-          return window.location.href="login.html";
+          this.props.onChangeSection("login")
       });
+  }
+  
+    _login = (e) => {
+      e.preventDefault();
+      this.props.onChangeSection("login")
     }
     
     render() {
@@ -91,7 +96,7 @@ class Signup extends React.Component {
                             </Button>
                         </Form>
                         <Message>
-                            Have account? <a href='/login.html'>Login</a>
+                            Have account? <a href='' onClick={ this._login}>Login</a>
                         </Message>
                     </Grid.Column>
                 </Grid>

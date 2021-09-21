@@ -40,6 +40,11 @@ class Login extends React.Component {
           _this.props.onChangeSection("table_list");
         });
     }
+
+    _signup = (e) => {
+      e.preventDefault();
+      this.props.onChangeSection("signup")
+    }
     render() {
         return(
           <Fragment>
@@ -64,7 +69,7 @@ class Login extends React.Component {
                       </Button>
                       </Form>
                       <Message>
-                        New to us? <a href='/signup.html'>Sign Up</a>
+                        New to us? <a href="" onClick={ this._signup}>Sign Up</a>
                       </Message>
                   </Grid.Column>
               </Grid>

@@ -9,3 +9,6 @@ npm i webpack @4.46.0
 npm i webpack-cli @3.3.12
 npm i css-loader@3.6.0
 npm i style-loader@1.3.0 
+
+npm run watch // 클라이언트 시작
+npm start // 서버 시작
